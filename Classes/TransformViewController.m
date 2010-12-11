@@ -13,20 +13,23 @@ CGPoint identity(CGPoint p) { return p; }
 @implementation TransformViewController
 
 @synthesize beforeImageView, afterImageView;
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+
+- (void) awakeFromNib {
+	[super awakeFromNib];
+	shaderTransformer = [[ShaderTransformer alloc] initWithResolution:CGSizeMake(475, 360)];
 }
-*/
+
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//    }
+//    return self;
+//}
 
 - (void)dealloc {
 	[beforeImageView release];
 	[afterImageView release];
+	[shaderTransformer release];
     [super dealloc];
 }
 
@@ -72,8 +75,14 @@ CGPoint identity(CGPoint p) { return p; }
 	CGContextRelease(input);
 	CGContextRelease(output);
 	CGImageRelease(outputImage);
+	free(inputBuffer);
+	free(outputBuffer);
 	
 	return ret;
+}
+
+- (UIImage *) transformImage:(UIImage *)image byShader:(id)shader {
+	return [shaderTransformer transformImage:image];
 }
 
 #pragma mark UIViewController methods
@@ -82,7 +91,7 @@ CGPoint identity(CGPoint p) { return p; }
 	[super viewDidLoad];
 	beforeImageView.image = [UIImage imageNamed:@"test.jpg"];
 	afterImageView.image = [self transformImage:beforeImageView.image 
-									 byFunction:identity];
+									   byShader:nil];
 }
 
 @end

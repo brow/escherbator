@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShaderTransformer.h"
 
 @interface TransformViewController : UIViewController {
-
+	ShaderTransformer *shaderTransformer;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *beforeImageView;

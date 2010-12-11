@@ -16,6 +16,11 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* TransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* TransformViewController.m */; };
 		D394121312B30FC800B2F720 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D394121212B30FC800B2F720 /* test.jpg */; };
+		D394133812B334DA00B2F720 /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133312B334DA00B2F720 /* Texture2D.m */; };
+		D394133912B334DA00B2F720 /* ContextAndBuffers.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133512B334DA00B2F720 /* ContextAndBuffers.m */; };
+		D394133A12B334DA00B2F720 /* DataBackedCAB.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133712B334DA00B2F720 /* DataBackedCAB.m */; };
+		D394133D12B334E600B2F720 /* ShaderTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133C12B334E600B2F720 /* ShaderTransformer.m */; };
+		D3B9D08812B43B8300255B81 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B9D08712B43B8300255B81 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +38,15 @@
 		32CA4F630368D1EE00C91783 /* Transform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Transform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Transform-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D394121212B30FC800B2F720 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		D394133212B334DA00B2F720 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
+		D394133312B334DA00B2F720 /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
+		D394133412B334DA00B2F720 /* ContextAndBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextAndBuffers.h; sourceTree = "<group>"; };
+		D394133512B334DA00B2F720 /* ContextAndBuffers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextAndBuffers.m; sourceTree = "<group>"; };
+		D394133612B334DA00B2F720 /* DataBackedCAB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBackedCAB.h; sourceTree = "<group>"; };
+		D394133712B334DA00B2F720 /* DataBackedCAB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBackedCAB.m; sourceTree = "<group>"; };
+		D394133B12B334E600B2F720 /* ShaderTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderTransformer.h; sourceTree = "<group>"; };
+		D394133C12B334E600B2F720 /* ShaderTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderTransformer.m; sourceTree = "<group>"; };
+		D3B9D08712B43B8300255B81 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +57,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				D3B9D08812B43B8300255B81 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +67,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D394133B12B334E600B2F720 /* ShaderTransformer.h */,
+				D394133C12B334E600B2F720 /* ShaderTransformer.m */,
+				D394133112B334DA00B2F720 /* OpenGL */,
 				1D3623240D0F684500981E51 /* TransformAppDelegate.h */,
 				1D3623250D0F684500981E51 /* TransformAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* TransformViewController.h */,
@@ -106,8 +124,22 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				D3B9D08712B43B8300255B81 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D394133112B334DA00B2F720 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				D394133212B334DA00B2F720 /* Texture2D.h */,
+				D394133312B334DA00B2F720 /* Texture2D.m */,
+				D394133412B334DA00B2F720 /* ContextAndBuffers.h */,
+				D394133512B334DA00B2F720 /* ContextAndBuffers.m */,
+				D394133612B334DA00B2F720 /* DataBackedCAB.h */,
+				D394133712B334DA00B2F720 /* DataBackedCAB.m */,
+			);
+			name = OpenGL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +207,10 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* TransformAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* TransformViewController.m in Sources */,
+				D394133812B334DA00B2F720 /* Texture2D.m in Sources */,
+				D394133912B334DA00B2F720 /* ContextAndBuffers.m in Sources */,
+				D394133A12B334DA00B2F720 /* DataBackedCAB.m in Sources */,
+				D394133D12B334E600B2F720 /* ShaderTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
