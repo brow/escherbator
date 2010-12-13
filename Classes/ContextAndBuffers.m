@@ -22,7 +22,7 @@ void releaseImageBuffer (void *info, const void *data, size_t size) {
 
 - (id) init {
 	if (self = [super init]) {
-		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 		
 		if (!context || ![self setAsOpenGLContext]) {
 			//TODO: this looks inadvisable 
