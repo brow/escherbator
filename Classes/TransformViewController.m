@@ -16,9 +16,9 @@ CGPoint identity(CGPoint p) { return p; }
 
 - (void) awakeFromNib {
 	[super awakeFromNib];
-	shaderTransformer = [[ShaderTransformer alloc] initWithResolution:CGSizeMake(475, 360) 
+	shaderTransformer = [[ShaderTransformer alloc] initWithResolution:CGSizeMake(360, 360) 
 													 vertexShaderFile:[[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"]
-												   fragmentShaderFile:[[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"]];
+												   fragmentShaderFile:[[NSBundle mainBundle] pathForResource:@"Identity" ofType:@"fsh"]];
 }
 
 - (void)dealloc {

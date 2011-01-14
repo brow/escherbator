@@ -21,7 +21,7 @@
 		D394133A12B334DA00B2F720 /* DataBackedCAB.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133712B334DA00B2F720 /* DataBackedCAB.m */; };
 		D394133D12B334E600B2F720 /* ShaderTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133C12B334E600B2F720 /* ShaderTransformer.m */; };
 		D3B9D08812B43B8300255B81 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B9D08712B43B8300255B81 /* OpenGLES.framework */; };
-		D3B9D26B12B5E51800255B81 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D3B9D21F12B5E41C00255B81 /* Shader.fsh */; };
+		D3B9D26B12B5E51800255B81 /* Identity.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D3B9D21F12B5E41C00255B81 /* Identity.fsh */; };
 		D3B9D26C12B5E51800255B81 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D3B9D22012B5E41C00255B81 /* Shader.vsh */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +49,7 @@
 		D394133B12B334E600B2F720 /* ShaderTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderTransformer.h; sourceTree = "<group>"; };
 		D394133C12B334E600B2F720 /* ShaderTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderTransformer.m; sourceTree = "<group>"; };
 		D3B9D08712B43B8300255B81 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		D3B9D21F12B5E41C00255B81 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		D3B9D21F12B5E41C00255B81 /* Identity.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Identity.fsh; sourceTree = "<group>"; };
 		D3B9D22012B5E41C00255B81 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +114,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D3B9D21F12B5E41C00255B81 /* Shader.fsh */,
+				D3B9D21F12B5E41C00255B81 /* Identity.fsh */,
 				D3B9D22012B5E41C00255B81 /* Shader.vsh */,
 				D394121212B30FC800B2F720 /* test.jpg */,
 				2899E5210DE3E06400AC0155 /* TransformViewController.xib */,
@@ -197,7 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3B9D26B12B5E51800255B81 /* Shader.fsh in Resources */,
+				D3B9D26B12B5E51800255B81 /* Identity.fsh in Resources */,
 				D3B9D26C12B5E51800255B81 /* Shader.vsh in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* TransformViewController.xib in Resources */,
