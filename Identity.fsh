@@ -19,15 +19,23 @@ const lowp float lnR2OverR1 = log(r2 / r1);
 
 
 lowp vec2 polar(lowp vec2 a) {
-	lowp float angle = a.y * 2.0 * PI;
 	lowp float dist = exp(a.x * lnR2OverR1) * r1;
+	lowp float angle = a.y * 2.0 * PI;
 	return vec2(0.5 + dist * cos(angle), 0.5 + dist * sin(angle));
+	
 }
 
 lowp vec2 unpolar(lowp vec2 a) {
-	lowp float angle = a.y * 2.0 * PI;
-	lowp float dist = exp(a.x * lnR2OverR1) * r1;
-	return vec2(0.5 + dist * cos(angle), 0.5 + dist * sin(angle));
+	lowp vec2 v = a - vec2(0.5, 0.5);
+	lowp float dist = sqrt(v.x * v.x + v.y * v.y);
+	lowp float angle = atan(v.y, v.x);
+	lowp float y = angle / (2.0 * PI);
+	lowp float x = log(dist / r1) / lnR2OverR1;
+	return vec2(x, y);
+}
+
+lowp vec2 mod(lowp vec2 a) {
+	return vec2(a.x - floor(a.x), a.y - floor(a.y));
 }
 
 lowp vec2 rotate(lowp vec2 a) {
@@ -46,5 +54,5 @@ lowp vec2 rotate(lowp vec2 a) {
 
 void main()
 {
-	gl_FragColor = texture2D(my_color_texture, polar(texture_coordinate));
+	gl_FragColor = texture2D(my_color_texture, polar(mod(rotate(unpolar(texture_coordinate)))));
 }
