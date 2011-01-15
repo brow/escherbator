@@ -50,7 +50,7 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	beforeImageView.image = [UIImage imageNamed:@"test2.jpg"];
+	beforeImageView.image = [UIImage imageNamed:@"test.jpg"];
 	[self paramaterValueChanged:self];
 }
 

@@ -34,6 +34,20 @@ lowp vec2 unpolar(lowp vec2 a) {
 	return vec2(x, y);
 }
 
+lowp vec2 scale(lowp vec2 a) {
+	lowp float lnR2OverR1 = log(r2 / r1);
+	lowp float scaleFactor = (2.0 * PI) / lnR2OverR1;
+	lowp mat2 scale = mat2(scaleFactor, 0 , 0, 1);
+	return scale * a;
+}
+
+lowp vec2 unscale(lowp vec2 a) {
+	lowp float lnR2OverR1 = log(r2 / r1);
+	lowp float scaleFactor = lnR2OverR1 / (2.0 * PI);
+	lowp mat2 scale = mat2(scaleFactor, 0 , 0, 1);
+	return scale * a;
+}
+
 lowp vec2 mod(lowp vec2 a) {
 	return vec2(a.x - floor(a.x), a.y - floor(a.y));
 }
@@ -53,5 +67,5 @@ lowp vec2 rotate(lowp vec2 a) {
 
 void main()
 {
-	gl_FragColor = texture2D(my_color_texture, polar(mod(rotate(unpolar(texture_coordinate)))));
+	gl_FragColor = texture2D(my_color_texture, polar(mod(scale(rotate(unscale(unpolar(texture_coordinate)))))));
 }
