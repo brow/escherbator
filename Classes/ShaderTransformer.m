@@ -19,6 +19,13 @@ enum {
     NUM_ATTRIBUTES
 };
 
+// Uniform index.
+enum {
+    UNIFORM_ALPHA,
+    NUM_UNIFORMS
+};
+GLint uniforms[NUM_UNIFORMS];
+
 static const GLfloat photoVertices[] = {
 	1,   1, 0,
 	1,  -1, 0,
@@ -205,6 +212,9 @@ static const GLfloat texCoords[] = {
         
         return FALSE;
     }
+	
+	// Get uniform locations.
+    uniforms[UNIFORM_ALPHA] = glGetUniformLocation(program, "alpha");
     
     // Release vertex and fragment shaders.
     if (vertShader)
@@ -217,6 +227,9 @@ static const GLfloat texCoords[] = {
 
 - (void) drawImage:(UIImage *)image {
 	glUseProgram(program);
+	
+	// Update uniform value.
+	glUniform1f(uniforms[UNIFORM_ALPHA], M_PI / 4.0);
 	
 	/* Set up attribute arrays. */
 	glVertexAttribPointer(ATTRIB_VERTEX, 3, GL_FLOAT, 0, 0, photoVertices);

@@ -8,12 +8,13 @@
 
 varying lowp vec2 texture_coordinate; 
 uniform sampler2D my_color_texture;
+uniform lowp float alpha;
 
 const highp float PI = 3.1415926535;
 const highp float E = 2.71828183;
 
 const lowp float r1 = 0.1;
-const lowp float r2 = 0.5;
+const lowp float r2 = 0.45;
 
 const lowp float lnR2OverR1 = log(r2 / r1);
 
@@ -43,10 +44,9 @@ lowp vec2 rotate(lowp vec2 a) {
 	lowp vec2 translation = vec2(0, -1.0);
 
 	/* Rotate and scale to take upper-right corner to (0, 1). */
-	lowp float angle = PI / 4.0;
-	lowp mat2 rotate = mat2(cos(angle), sin(angle), -sin(angle), cos(angle));
+	lowp mat2 rotate = mat2(cos(alpha), sin(alpha), -sin(alpha), cos(alpha));
 	
-	lowp float scaleFactor = sqrt(2.0);
+	lowp float scaleFactor = 1.0 / cos(alpha);
 	lowp mat2 scale = mat2(scaleFactor, 0 , 0, scaleFactor);
 	
 	return rotate * scale * (a + translation) - translation;
