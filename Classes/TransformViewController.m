@@ -8,11 +8,9 @@
 
 #import "TransformViewController.h"
 
-CGPoint identity(CGPoint p) { return p; }
-
 @implementation TransformViewController
 
-@synthesize beforeImageView, afterImageView;
+@synthesize beforeImageView, afterImageView, alphaSlider, r1Slider, r2Slider;
 
 - (void) awakeFromNib {
 	[super awakeFromNib];
@@ -24,21 +22,36 @@ CGPoint identity(CGPoint p) { return p; }
 - (void)dealloc {
 	[beforeImageView release];
 	[afterImageView release];
+	[alphaSlider release];
+	[r1Slider release];
+	[r2Slider release];
 	[shaderTransformer release];
     [super dealloc];
 }
 
 - (UIImage *) transformImage:(UIImage *)image byShader:(id)shader {
+	
 	return [shaderTransformer transformImage:image];
+}
+
+#pragma mark actions
+
+- (IBAction) paramaterValueChanged:(id)sender {
+	[shaderTransformer setUniforms:[NSDictionary dictionaryWithObjectsAndKeys:
+									[NSNumber numberWithFloat:	[alphaSlider value]],	@"alpha",
+									[NSNumber numberWithFloat:	[r1Slider value]],		@"r1",
+									[NSNumber numberWithFloat:	[r2Slider value]],		@"r2",
+									nil ]];
+	afterImageView.image = [self transformImage:beforeImageView.image 
+									   byShader:nil];
 }
 
 #pragma mark UIViewController methods
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	beforeImageView.image = [UIImage imageNamed:@"test.jpg"];
-	afterImageView.image = [self transformImage:beforeImageView.image 
-									   byShader:nil];
+	beforeImageView.image = [UIImage imageNamed:@"test2.jpg"];
+	[self paramaterValueChanged:self];
 }
 
 @end

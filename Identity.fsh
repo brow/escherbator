@@ -8,18 +8,16 @@
 
 varying lowp vec2 texture_coordinate; 
 uniform sampler2D my_color_texture;
+
 uniform lowp float alpha;
+uniform lowp float r1;
+uniform lowp float r2;
 
 const highp float PI = 3.1415926535;
 const highp float E = 2.71828183;
 
-const lowp float r1 = 0.1;
-const lowp float r2 = 0.45;
-
-const lowp float lnR2OverR1 = log(r2 / r1);
-
-
 lowp vec2 polar(lowp vec2 a) {
+	lowp float lnR2OverR1 = log(r2 / r1);
 	lowp float dist = exp(a.x * lnR2OverR1) * r1;
 	lowp float angle = a.y * 2.0 * PI;
 	return vec2(0.5 + dist * cos(angle), 0.5 + dist * sin(angle));
@@ -27,6 +25,7 @@ lowp vec2 polar(lowp vec2 a) {
 }
 
 lowp vec2 unpolar(lowp vec2 a) {
+	lowp float lnR2OverR1 = log(r2 / r1);
 	lowp vec2 v = a - vec2(0.5, 0.5);
 	lowp float dist = sqrt(v.x * v.x + v.y * v.y);
 	lowp float angle = atan(v.y, v.x);

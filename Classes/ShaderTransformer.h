@@ -17,10 +17,14 @@
 	CGSize resolution;
 	DataBackedCAB *contextAndBuffers;
 	GLuint program;
+	NSDictionary *uniforms;
 }
 
 - (id) initWithResolution:(CGSize)aResolution 
 		 vertexShaderFile:(NSString *)vertexShaderFile 
 	   fragmentShaderFile:(NSString *)fragmentShaderFile;
 - (UIImage *) transformImage:(UIImage *)image;
+
+@property (retain) NSDictionary *uniforms;
+
 @end

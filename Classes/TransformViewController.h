@@ -10,11 +10,18 @@
 #import "ShaderTransformer.h"
 
 @interface TransformViewController : UIViewController {
+	UIImageView *beforeImageView;
+	UIImageView *afterImageView;
+	UISlider *alphaSlider, *r1Slider, *r2Slider;
+	
 	ShaderTransformer *shaderTransformer;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *beforeImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *afterImageView;
+@property (retain, nonatomic) IBOutlet UISlider *alphaSlider, *r1Slider, *r2Slider;
+
+- (IBAction) paramaterValueChanged:(id)sender;
 
 @end
 
