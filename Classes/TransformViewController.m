@@ -37,10 +37,15 @@
 #pragma mark actions
 
 - (IBAction) paramaterValueChanged:(id)sender {
+	
+	if (sender == r1Slider || sender == r2Slider || sender == self) {
+		alphaSlider.value = M_PI / 2.0 - atan((2 * M_PI) / log(r2Slider.value / r1Slider.value));
+	}
+	
 	[shaderTransformer setUniforms:[NSDictionary dictionaryWithObjectsAndKeys:
-									[NSNumber numberWithFloat:	[alphaSlider value]],	@"alpha",
-									[NSNumber numberWithFloat:	[r1Slider value]],		@"r1",
-									[NSNumber numberWithFloat:	[r2Slider value]],		@"r2",
+									[NSNumber numberWithFloat:	alphaSlider.value],	@"alpha",
+									[NSNumber numberWithFloat:	r1Slider.value],	@"r1",
+									[NSNumber numberWithFloat:	r2Slider.value],	@"r2",
 									nil ]];
 	afterImageView.image = [self transformImage:beforeImageView.image 
 									   byShader:nil];

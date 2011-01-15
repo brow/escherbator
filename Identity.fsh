@@ -16,8 +16,9 @@ uniform lowp float r2;
 const highp float PI = 3.1415926535;
 const highp float E = 2.71828183;
 
+lowp float lnR2OverR1 = log(r2 / r1);
+
 lowp vec2 polar(lowp vec2 a) {
-	lowp float lnR2OverR1 = log(r2 / r1);
 	lowp float dist = exp(a.x * lnR2OverR1) * r1;
 	lowp float angle = a.y * 2.0 * PI;
 	return vec2(0.5 + dist * cos(angle), 0.5 + dist * sin(angle));
@@ -25,7 +26,6 @@ lowp vec2 polar(lowp vec2 a) {
 }
 
 lowp vec2 unpolar(lowp vec2 a) {
-	lowp float lnR2OverR1 = log(r2 / r1);
 	lowp vec2 v = a - vec2(0.5, 0.5);
 	lowp float dist = sqrt(v.x * v.x + v.y * v.y);
 	lowp float angle = atan(v.y, v.x);
@@ -35,14 +35,12 @@ lowp vec2 unpolar(lowp vec2 a) {
 }
 
 lowp vec2 scale(lowp vec2 a) {
-	lowp float lnR2OverR1 = log(r2 / r1);
 	lowp float scaleFactor = (2.0 * PI) / lnR2OverR1;
 	lowp mat2 scale = mat2(scaleFactor, 0 , 0, 1);
 	return scale * a;
 }
 
 lowp vec2 unscale(lowp vec2 a) {
-	lowp float lnR2OverR1 = log(r2 / r1);
 	lowp float scaleFactor = lnR2OverR1 / (2.0 * PI);
 	lowp mat2 scale = mat2(scaleFactor, 0 , 0, 1);
 	return scale * a;
