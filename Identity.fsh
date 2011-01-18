@@ -16,6 +16,8 @@ uniform lowp float r2;
 const highp float PI = 3.1415926535;
 const highp float E = 2.71828183;
 
+const bool clipCircle = false;
+
 lowp vec2 polar(lowp vec2 a) {
 	lowp float dist = exp(a.x) * r1;
 	lowp float angle = a.y;
@@ -31,11 +33,29 @@ lowp vec2 unpolar(lowp vec2 a) {
 	return vec2(x, y);
 }
 
-lowp vec2 mod(lowp vec2 a) {
-	// Tile a 2*PI by log(r2/r1) rectangle over the plane. 
-	lowp float lnR2OverR1 = log(r2 / r1);
-	return vec2(a.x - floor(a.x/lnR2OverR1) * lnR2OverR1, 
-				a.y - floor(a.y/(2.0 * PI)) * 2.0 * PI);
+lowp vec2 tile(lowp vec2 a) {
+	// Tile a log(r2/r1) by 2*PI rectangle over the plane.
+	lowp float edge, x, y = mod(a.y, 2.0 * PI);
+	if (clipCircle) {
+		// Clip to circle with radius r2
+		x = mod(a.x, log(r2 / r1));
+	} else {
+		// Clip to image edge. 
+		// edge = distance from center to image rect edge along angle y
+		// TODO: generalize for non-square image
+		if (abs(sin(y)) < 1.0 / sqrt(2.0))
+			edge = abs(0.5 / cos(y));
+		else
+			edge = abs(0.5 / sin(y));	
+		x = mod(a.x + edge - r2, log(edge / r1));
+	}
+	return vec2(x, y);
+}
+
+lowp vec2 visualize(lowp vec2 a) {
+	// Scale (log(r2/r1), 2*PI) to (1,1) for easier visualization).
+	lowp mat2 scale = mat2(log(r2 / r1)*2.0, 0 , 0, 2.0 * PI);
+	return scale * a;
 }
 
 lowp vec2 rotate(lowp vec2 a) {
@@ -53,5 +73,5 @@ lowp vec2 rotate(lowp vec2 a) {
 
 void main()
 {
-	gl_FragColor = texture2D(my_color_texture, polar(mod(rotate(unpolar(texture_coordinate)))));
+	gl_FragColor = texture2D(my_color_texture, polar(tile(unpolar((texture_coordinate)))));
 }
