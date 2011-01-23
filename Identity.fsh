@@ -16,8 +16,6 @@ uniform lowp float r2;
 const highp float PI = 3.1415926535;
 const highp float E = 2.71828183;
 
-const bool clipCircle = false;
-
 lowp vec2 polar(lowp vec2 a) {
 	lowp float dist = exp(a.x) * r1;
 	lowp float angle = a.y;
@@ -35,24 +33,26 @@ lowp vec2 unpolar(lowp vec2 a) {
 
 lowp vec2 tile(lowp vec2 a) {
 	// Tile a log(r2/r1) by 2*PI rectangle over the plane.
+	return vec2(mod(a.x, log(r2 / r1)),
+				mod(a.y, 2.0 * PI));
+}
+
+lowp vec2 tile_unclipped(lowp vec2 a) {
+	// Tile the plane with a non-rectangular tile based on
+	// clipping at the image edge rather than at 
 	lowp float edge, x, y = mod(a.y, 2.0 * PI);
-	if (clipCircle) {
-		// Clip to circle with radius r2
-		x = mod(a.x, log(r2 / r1));
-	} else {
-		// Clip to image edge. 
-		// edge = distance from center to image rect edge along angle y
-		// TODO: generalize for non-square image
-		lowp float maxEdge = 1.0 / sqrt(2.0), minEdge = 0.5;
-		if (abs(sin(y)) < maxEdge)
-			edge = abs(0.5 / cos(y));
-		else
-			edge = abs(0.5 / sin(y));	
-		x = a.x;
-		x = mod(x , log(r2 / r1));
-		if (x < log(edge / r1) - log(r2 / r1))
-			x = x + log(r2 / r1);
-	}
+	// Clip to image edge. 
+	// edge = distance from center to image rect edge along angle y
+	// TODO: generalize for non-square image
+	lowp float maxEdge = 1.0 / sqrt(2.0), minEdge = 0.5;
+	if (abs(sin(y)) < maxEdge)
+		edge = abs(0.5 / cos(y));
+	else
+		edge = abs(0.5 / sin(y));	
+	x = a.x;
+	x = mod(x , log(r2 / r1));
+	if (x < log(edge / r1) - log(r2 / r1))
+		x = x + log(r2 / r1);
 	return vec2(x, y);
 }
 
@@ -77,5 +77,7 @@ lowp vec2 rotate(lowp vec2 a) {
 
 void main()
 {
-	gl_FragColor = texture2D(my_color_texture, polar(tile(rotate(unpolar(texture_coordinate)))));
+	highp vec4 under = texture2D(my_color_texture, polar(tile_unclipped(rotate(unpolar(texture_coordinate)))));
+	highp vec4 over = texture2D(my_color_texture, polar(tile(rotate(unpolar(texture_coordinate)))));
+	gl_FragColor = over + (1.0 - over.a) * under;
 }
