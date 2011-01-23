@@ -43,11 +43,15 @@ lowp vec2 tile(lowp vec2 a) {
 		// Clip to image edge. 
 		// edge = distance from center to image rect edge along angle y
 		// TODO: generalize for non-square image
-		if (abs(sin(y)) < 1.0 / sqrt(2.0))
+		lowp float maxEdge = 1.0 / sqrt(2.0), minEdge = 0.5;
+		if (abs(sin(y)) < maxEdge)
 			edge = abs(0.5 / cos(y));
 		else
 			edge = abs(0.5 / sin(y));	
-		x = mod(a.x + edge - r2, log(edge / r1));
+		x = a.x;
+		x = mod(x , log(r2 / r1));
+		if (x < log(edge / r1) - log(r2 / r1))
+			x = x + log(r2 / r1);
 	}
 	return vec2(x, y);
 }
@@ -73,5 +77,5 @@ lowp vec2 rotate(lowp vec2 a) {
 
 void main()
 {
-	gl_FragColor = texture2D(my_color_texture, polar(tile(unpolar((texture_coordinate)))));
+	gl_FragColor = texture2D(my_color_texture, polar(tile(rotate(unpolar(texture_coordinate)))));
 }

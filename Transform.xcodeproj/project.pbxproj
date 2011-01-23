@@ -15,6 +15,8 @@
 		2899E5220DE3E06400AC0155 /* TransformViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TransformViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* TransformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* TransformViewController.m */; };
+		D35F41B612EBC3E7007FDEFD /* test3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D35F41B512EBC3E7007FDEFD /* test3.jpg */; };
+		D35F41BC12EBC54A007FDEFD /* test4.png in Resources */ = {isa = PBXBuildFile; fileRef = D35F41BB12EBC54A007FDEFD /* test4.png */; };
 		D394121312B30FC800B2F720 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D394121212B30FC800B2F720 /* test.jpg */; };
 		D394133812B334DA00B2F720 /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133312B334DA00B2F720 /* Texture2D.m */; };
 		D394133912B334DA00B2F720 /* ContextAndBuffers.m in Sources */ = {isa = PBXBuildFile; fileRef = D394133512B334DA00B2F720 /* ContextAndBuffers.m */; };
@@ -40,6 +42,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Transform_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Transform-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Transform-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		D35F41B512EBC3E7007FDEFD /* test3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test3.jpg; sourceTree = "<group>"; };
+		D35F41BB12EBC54A007FDEFD /* test4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test4.png; sourceTree = "<group>"; };
 		D394121212B30FC800B2F720 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		D394133212B334DA00B2F720 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		D394133312B334DA00B2F720 /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D35F41BB12EBC54A007FDEFD /* test4.png */,
+				D35F41B512EBC3E7007FDEFD /* test3.jpg */,
 				D3EE058112E249A60025587C /* test2.jpg */,
 				D3B9D21F12B5E41C00255B81 /* Identity.fsh */,
 				D3B9D22012B5E41C00255B81 /* Shader.vsh */,
@@ -206,6 +212,8 @@
 				2899E5220DE3E06400AC0155 /* TransformViewController.xib in Resources */,
 				D394121312B30FC800B2F720 /* test.jpg in Resources */,
 				D3EE058212E249A60025587C /* test2.jpg in Resources */,
+				D35F41B612EBC3E7007FDEFD /* test3.jpg in Resources */,
+				D35F41BC12EBC54A007FDEFD /* test4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
