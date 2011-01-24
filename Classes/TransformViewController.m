@@ -12,11 +12,15 @@
 
 @synthesize beforeImageView, afterImageView, alphaSlider, r1Slider, r2Slider;
 
-- (void) awakeFromNib {
-	[super awakeFromNib];
-	shaderTransformer = [[ShaderTransformer alloc] initWithResolution:CGSizeMake(360, 360) 
-													 vertexShaderFile:[[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"]
-												   fragmentShaderFile:[[NSBundle mainBundle] pathForResource:@"Identity" ofType:@"fsh"]];
+- (id)initWithImage:(UIImage *)image {
+    self = [super initWithNibName:@"TransformViewController" bundle:nil];
+    if (self) {
+		beforeImage = [image retain];
+        shaderTransformer = [[ShaderTransformer alloc] initWithResolution:CGSizeMake(360, 360) 
+														 vertexShaderFile:[[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"]
+													   fragmentShaderFile:[[NSBundle mainBundle] pathForResource:@"Identity" ofType:@"fsh"]];
+    }
+    return self;
 }
 
 - (void)dealloc {
@@ -25,6 +29,7 @@
 	[alphaSlider release];
 	[r1Slider release];
 	[r2Slider release];
+	[beforeImage release];
 	[shaderTransformer release];
     [super dealloc];
 }
@@ -55,8 +60,20 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
-	beforeImageView.image = [UIImage imageNamed:@"test4.png"];
+	beforeImageView.image = beforeImage;
 	[self paramaterValueChanged:self];
 }
+
+#pragma mark UIViewController methods
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+	self.beforeImageView = nil;
+	self.afterImageView = nil;
+	self.alphaSlider = nil;
+	self.r1Slider = nil;
+	self.r2Slider = nil;
+}
+
 
 @end

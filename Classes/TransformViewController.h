@@ -14,6 +14,7 @@
 	UIImageView *afterImageView;
 	UISlider *alphaSlider, *r1Slider, *r2Slider;
 	
+	UIImage *beforeImage;
 	ShaderTransformer *shaderTransformer;
 }
 

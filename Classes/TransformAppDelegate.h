@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class TransformViewController;
-
 @interface TransformAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    TransformViewController *viewController;
+    UINavigationController *navigationController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet TransformViewController *viewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end
 
